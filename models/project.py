@@ -10,3 +10,4 @@ class Project(Core, Base):
     start_date = Column(DateTime, nullable=False)
     duration = Column(Integer)
     weight = Column(Integer)
+    parent = Column(String(60))

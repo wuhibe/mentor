@@ -10,7 +10,6 @@ class Check(Core, Base):
     case = Column(String(640))
     solution = Column(String(640))
     weight = Column(Integer)
-    value = Column(Boolean)
 
     def get_all_checks(self, tid):
         lst = self.all()

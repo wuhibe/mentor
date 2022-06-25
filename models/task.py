@@ -9,7 +9,8 @@ class Task(Core, Base):
     pid = Column(String(60), ForeignKey('project.id'), nullable=False)
     name = Column(String(128), nullable=False)
     weight = Column(Integer)
-    no_checks = Column(Integer)
+    avg_denom = Column(Integer)
+    output = Column(String(128))
 
     def get_all_tasks(self, pid):
         lst = self.all()

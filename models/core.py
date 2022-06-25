@@ -15,26 +15,27 @@ class Core:
         """Initialization of core"""
         self.__db = models.db
         if kwargs:
-            id = str(uuid4())
-            setattr(self, 'id', id)
+            if 'id' not in kwargs.keys():
+                id = str(uuid4())
+                setattr(self, 'id', id)
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
 
     def save(self):
-        """updates the attribute 'updated_at' with the current datetime"""
-        self.updated_at = datetime.utcnow()
-        self.__db.add(self)
+        """ saves the current object to database """
         self.__db.commit()
-
-    def get(self, id):
-        ''' fetch an object using its id '''
-        return self.__db.get(self.__class__.__name__, id)
 
     def delete(self):
         """delete the current instance from the storage"""
         self.__db.delete(self)
 
-    def all(self):
-        ''' return all objects as s'''
-        return self.__db.all(self.__class__.__name__)
+    @classmethod
+    def get(cls, id):
+        ''' fetch an object using its id '''
+        return models.db.get(cls.__name__, id)
+
+    @classmethod
+    def all(cls):
+        ''' return all instances of the class as list '''
+        return models.db.all(cls.__name__)
