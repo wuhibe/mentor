@@ -6,7 +6,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class Student(UserMixin, db.Model, Core, Base):
+class Student(Core, Base, UserMixin, db.Model):
     """ class for student """
     __tablename__ = 'student'
     start_date = Column(DateTime)

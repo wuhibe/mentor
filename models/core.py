@@ -24,6 +24,7 @@ class Core:
 
     def save(self):
         """ saves the current object to database """
+        self.__db.add(self)
         self.__db.commit()
 
     def delete(self):
