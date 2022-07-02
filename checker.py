@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 '''checker module'''
 import os
+from models.check import Check
+from models.project import Project
+from models.score import Score
+from models.student import Student
+from models.task import Task
 
 
 def file_exists(parent, project, filename):
@@ -44,3 +49,33 @@ def simple_check(parent, project, filename, out):
             case = (r == out)
         return [True, pycode, perm, decor, case]
     return [False for i in range(0, 5)]
+
+
+def check_task(tid:str, sid:str):
+    t = Task.get(tid)
+    p = Project.get(t.pid)
+    st = Student.get(sid)
+    username = st.github
+    parent = p.parent
+    project = p.name
+    filename = t.name
+    out = t.output
+    i = os.system('mkdir -p Checker/EXAMINE && git clone ' +
+                'https://github.com/{}/{}.git Checker/{} 2>/dev/null'
+                .format(username, parent, parent))
+    if i != 0:
+        print('Check repo')
+    basic_checks = simple_check(parent, project, filename, out)
+    os.system('rm -rf Checker temp')
+    score = 0
+    for check in basic_checks:
+        if check:
+            score += 20
+    s = Score.task_by_sid(sid, tid)
+    if s == []:
+        s = Score({'sid':sid})
+    else:
+        s = s[0]
+    s.tscore = score
+    s.save()
+    return score
