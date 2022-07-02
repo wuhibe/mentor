@@ -1,0 +1,26 @@
+{% extends "inside.html" %} {% block content %}
+<div class="min-h-screen bg-base-300" style="padding-top: 50px; padding-left: 30px;">
+    <div class="text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Projects</h1>
+            <br>
+        </div>
+        <div class="hero-content">
+            {% for project in projects %}
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title justify-center">{{ project.name }}</h2>
+                    <p> {{ project.description }}
+                    </p>
+                    <div class="card-actions justify-end">
+                        <a href="{{ url_for('projects') }}/{{ project.id }}">
+                            <button class="btn">View</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

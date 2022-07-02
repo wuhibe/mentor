@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static',filename='images/logo.svg') }}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.17.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Mentor - {{title}}</title>
+</head>
+
+<body>
+    <hr> {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul class="alert alert-warning shadow-lg">
+        {% for message in messages %}
+        <li>{{ message }}</li> {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% block content %}{% endblock %}
+</body>
+
+</html>

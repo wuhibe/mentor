@@ -1,0 +1,43 @@
+{% extends "inside.html" %} {% block content %}
+<div class="min-h-screen bg-base-300" style="padding-top: 50px; padding-left: 30px;">
+    <div class="text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">{{ project.title }}</h1>
+            <br>
+        </div>
+        <div class="hero-content">
+            {% for task in tasks %}
+            <div class="card w-96 bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title justify-center">{{ task.name }}</h2>
+                    <p> {{ task.description }}
+                    </p>
+                    <div class="card-actions justify-end">
+                        <label for="{{ task.id }}" class="btn modal-button">Check</label>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} {% block modal %} {% for task in tasks %}
+<input type="checkbox" id="{{ task.id }}" class="modal-toggle" />
+<div class="modal">
+    <div class="modal-box">
+        <label for="{{ task.id }}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <h3 class="font-bold text-lg">{{ task.name }}</h3>
+        <p class="py-4">{{ task.name }}</p>
+        <div class="radial-progress" style="--value:{{score[tid]}}; --thickness: 3px; size: 24px;">
+            {{score[tid]}}
+        </div>
+        <div class="modal-action">
+            <form method="post">
+                <button class="btn" type="submit" id="{{ task.id }}" style="background-color: black;">
+                    Check
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %} {% endblock %}

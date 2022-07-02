@@ -51,7 +51,7 @@ def simple_check(parent, project, filename, out):
     return [False for i in range(0, 5)]
 
 
-def check_task(tid:str, sid:str):
+def check_task(tid: str, sid: str):
     t = Task.get(tid)
     p = Project.get(t.pid)
     st = Student.get(sid)
@@ -61,8 +61,8 @@ def check_task(tid:str, sid:str):
     filename = t.name
     out = t.output
     i = os.system('mkdir -p Checker/EXAMINE && git clone ' +
-                'https://github.com/{}/{}.git Checker/{} 2>/dev/null'
-                .format(username, parent, parent))
+                  'https://github.com/{}/{}.git Checker/{} 2>/dev/null'
+                  .format(username, parent, parent))
     if i != 0:
         print('Check repo')
     basic_checks = simple_check(parent, project, filename, out)
@@ -73,7 +73,7 @@ def check_task(tid:str, sid:str):
             score += 20
     s = Score.task_by_sid(sid, tid)
     if s == []:
-        s = Score({'sid':sid})
+        s = Score({'sid': sid})
     else:
         s = s[0]
     s.tscore = score

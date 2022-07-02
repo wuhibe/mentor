@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Register</h1>
+        </div>
+        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div class="card-body">
+                <form class="form" action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.fname(placeholder="First name", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.fname.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <p>
+                        {{ form.lname(placeholder="Last name", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.lname.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <p>
+                        {{ form.github(placeholder="GitHub link", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.github.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <p>
+                        {{ form.email(placeholder="Email", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.email.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <p>
+                        {{ form.password(placeholder="Password", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.password.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <p>
+                        {{ form.password2(placeholder="Confirm Password", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.password2.errors %}
+                        <span>[{{ error }}]</span> {% endfor %}
+                        <br>
+                    </p>
+                    <button type="submit" class="btn" style="background-color: black;">Register</button>
+                </form>
+                <p>Already registered? &nbsp; <a href="{{ url_for('login') }}" class="link">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
