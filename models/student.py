@@ -16,12 +16,6 @@ class Student(Core, Base, UserMixin, db.Model):
     first_name = Column(String(128))
     last_name = Column(String(128))
 
-    def __setattr__(self, name, value) -> None:
-        """sets a password with md5 encryption"""
-        if name == "password":
-            value = generate_password_hash(value)
-        super().__setattr__(name, value)
-
     def set_password(self, password):
         """ set student password """
         self.password = generate_password_hash(password)
@@ -34,4 +28,4 @@ class Student(Core, Base, UserMixin, db.Model):
 @login.user_loader
 def load_user(id):
     """ method to load student id """
-    return Student.query.get(int(id))
+    return Student.query.get(id)
