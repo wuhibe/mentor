@@ -1,0 +1,9 @@
+{% extends "inside.html" %} {% block content %}
+<div class="max-w-md">
+    <h1 class="text-3xl font-bold">The page you requested was not found.</h1>
+    <p><br></p>
+    <a href="{{ url_for('index') }}">
+        <button class="btn">Go Back Home</button>
+    </a>
+</div>
+{% endblock %}

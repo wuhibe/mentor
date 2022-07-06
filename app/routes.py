@@ -97,6 +97,11 @@ def profile():
     return render_template('profile.html', title='User Profile')
 
 
+@app.route('/resources')
+def resources():
+    return render_template('resources.html', title='Resources')
+
+
 @app.route('/projects')
 @login_required
 def projects():
