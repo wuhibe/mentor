@@ -1,4 +1,5 @@
 from models import Base
+import models
 from models.core import Core
 from sqlalchemy import Column, String, DateTime
 from app import login, db
@@ -24,6 +25,19 @@ class Student(Core, Base, UserMixin, db.Model):
         """ check student password """
         return check_password_hash(self.password, password)
 
+    @classmethod
+    def get_by_email(cls, email):
+        ''' fetch an object from its classname and its id '''
+        all = models.db.all('Student')
+        for obj in all:
+            if (obj.email == email):
+                return obj
+        return None
+
+    def save(self):
+        """ saves the current object to database """
+        models.db.add(self)
+        models.db.commit()
 
 @login.user_loader
 def load_user(id):

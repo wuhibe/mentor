@@ -11,18 +11,15 @@ from app import app
 import checker
 
 
-s = Student()
-
-
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('404.html'), 404
+    return render_template('404.html', title='404 Error'), 404
 
 
 @app.errorhandler(500)
 def internal_error(error):
     models.db.reload()
-    return render_template('500.html'), 500
+    return render_template('500.html', title='500 Error'), 500
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -74,11 +71,10 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = Student.query.filter_by(email=form.email.data).first()
-        s = user
-        if s is None or not user.check_password(form.password.data):
+        if user is None or not user.check_password(form.password.data):
             flash('Invalid email or password')
             return redirect(url_for('login'))
-        login_user(s, remember=form.remember_me.data)
+        login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
@@ -92,12 +88,36 @@ def index():
     return render_template('index.html', title='Home')
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'], strict_slashes=False)
+@login_required
 def profile():
-    return render_template('profile.html', title='User Profile')
+    form = RegistrationForm()
+    s = Student.get_by_email(current_user.email)
+    if request.method == 'POST':
+        try:
+            st = Student.query.filter_by(github=form.github.data).first()
+            if st and st.id != s.id:
+                flash('Please use your own github.')
+                return redirect(url_for('profile'))
+            st = Student.query.filter_by(email=form.email.data).first()
+            if st and st.id != s.id:
+                flash('Email already in use')
+                return redirect(url_for('profile'))
+        except Exception:
+            pass
+        s.github = form.github.data,
+        s.first_name = form.fname.data,
+        s.last_name = form.lname.data
+        s.set_password(form.password.data)
+        s.save()
+        flash('Changes have been saved!')
+        return redirect(url_for('profile'))
+    return render_template('profile.html', title='User Profile',
+                           form=form, user=s)
 
 
 @app.route('/resources')
+@login_required
 def resources():
     return render_template('resources.html', title='Resources')
 
@@ -113,6 +133,7 @@ def projects():
 @app.route('/projects/<id>', methods=['GET', 'POST'], strict_slashes=False)
 @login_required
 def project(id):
+    s = Student.get_by_email(current_user.email)
     project = Project.get(id)
     tasks = []
     score = {}

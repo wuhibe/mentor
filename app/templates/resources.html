@@ -1,9 +1,39 @@
 {% extends "inside.html" %} {% block content %}
-<div class="max-w-md">
-    <h1 class="text-3xl font-bold">The page you requested was not found.</h1>
-    <p><br></p>
-    <a href="{{ url_for('index') }}">
-        <button class="btn">Go Back Home</button>
-    </a>
+<div class="min-h-screen bg-base-300" style="padding-top: 50px; padding-left: 30px;">
+    <div class="hero-content">
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="text-2xl font-bold">Youtube</h2>
+                <a href="https://www.youtube.com/watch?v=nykOeWgQcHM&list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA" target="_blank">
+                    <p class="py-6">MIT OpenCourseWare</p>
+                </a>
+                <a href="https://www.youtube.com/watch?v=YoXxevp1WRQ&list=PLhQjrBD2T382_R182iC2gNZI9HzWFMC_8" target="_blank">
+                    <p class="py-6">Harvard CS50</p>
+                </a>
+            </div>
+        </div>
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="text-2xl font-bold">Practice coding</h2>
+                <a href="https://leetcode.com/" target="_blank">
+                    <p class="py-6">LeetCode</p>
+                </a>
+                <a href="https://www.hackerrank.com/" target="_blank">
+                    <p class="py-6">Hackerrank</p>
+                </a>
+            </div>
+        </div>
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="text-2xl font-bold">Docs</h2>
+                <a href="https://docs.python.org/3/" target="_blank">
+                    <p class="py-6">Python Docs(3)</p>
+                </a>
+                <a href="https://github.com/cs-books/influential-cs-books" target="_blank">
+                    <p class="py-6">CS Books list</p>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

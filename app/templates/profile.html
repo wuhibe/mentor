@@ -1,2 +1,46 @@
 {% extends "inside.html" %} {% block content %}
-<p>profile</p>{% endblock %}
+<div class="hero min-h-screen bg-base-200">
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div class="card-body">
+            <form class="form" action="" method="post">
+                {{ form.hidden_tag() }}
+                <p> First Name</p>
+                <p>
+                    {{ form.fname(placeholder=user.first_name,class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.fname.errors %}
+                    <span>[{{ error }}]</span> {% endfor %}
+                    <br>
+                </p>
+                <p> Last Name</p>
+                <p> {{ form.lname(placeholder=user.last_name, class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.lname.errors %}
+                    <span>[{{ error }}]</span> {% endfor %}
+                    <br>
+                </p>
+                <p> GitHub Link </p>
+                <p>{{ form.github(placeholder=user.github, class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.github.errors %}
+                    <span>[{{ error }}]</span> {% endfor %}
+                    <br>
+                </p>
+                <p> Email</p>
+                <p>
+                    <input type="text" placeholder="{{user.email}}" class="input input-bordered w-full max-w-xs" disabled /><br>
+                    <br>
+                </p>
+                <p> Password </p>
+                <p>
+                    {{ form.password(placeholder="Password", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.password.errors %}
+                    <span>[{{ error }}]</span> {% endfor %}
+                    <br>
+                </p>
+                <p> Confirm Password</p>
+                <p>
+                    {{ form.password2(placeholder="Confirm Password", class="input input-bordered w-full max-w-xs") }}<br> {% for error in form.password2.errors %}
+                    <span>[{{ error }}]</span> {% endfor %}
+                    <br>
+                </p>
+                <button type="submit" class="btn" style="background-color: black;">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
