@@ -1,4 +1,5 @@
 from models import Base
+import models
 from models.core import Core
 from sqlalchemy import Column, Integer, String, ForeignKey, Text
 
@@ -13,8 +14,9 @@ class Task(Core, Base):
     avg_denom = Column(Integer)
     output = Column(String(128))
 
-    def get_all_tasks(self, pid):
-        lst = self.all()
+    @classmethod
+    def get_all_tasks(cls, pid):
+        lst = models.db.all('Task')
         all = []
         for obj in lst:
             if obj.pid == pid:

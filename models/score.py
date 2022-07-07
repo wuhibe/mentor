@@ -15,7 +15,7 @@ class Score(Core, Base):
     ccheck = Column(Boolean)
 
     @classmethod
-    def task_by_sid(sid, tid):
+    def task_by_sid(cls, sid, tid):
         """ method to fetch task score by student """
         all = Score.all()
         lst = []
@@ -25,7 +25,7 @@ class Score(Core, Base):
         return lst
 
     @classmethod
-    def project_by_sid(sid, pid):
+    def project_by_sid(cls, sid, pid):
         """ method to fetch project score by student """
         all = Score.all()
         lst = []

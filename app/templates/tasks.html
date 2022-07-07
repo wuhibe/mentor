@@ -27,15 +27,14 @@
     <div class="modal-box">
         <label for="{{ task.id }}" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
         <h3 class="font-bold text-lg">{{ task.name }}</h3>
-        <p class="py-4">{{ task.name }}</p>
+        <p class="py-4" style="white-space: pre-line">{{ task.description }}</p>
         <div class="radial-progress" style="--value:{{score[tid]}}; --thickness: 3px; size: 24px;">
             {{score[tid]}}
         </div>
         <div class="modal-action">
             <form method="post">
-                <button class="btn" type="submit" id="{{ task.id }}" style="background-color: black;">
-                    Check
-                </button>
+                <input name="task" value="{{task.id}}" />
+                <button class="btn" type="submit" id="task" style="background-color: black;">Check</button>
             </form>
         </div>
     </div>

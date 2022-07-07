@@ -1,3 +1,4 @@
+import random
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
@@ -22,7 +23,7 @@ def internal_error(error):
     return render_template('500.html', title='500 Error'), 500
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
     """ method to handle requests made to /register route """
     if current_user.is_authenticated:
@@ -58,12 +59,12 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def dashboard():
     return render_template('dash.html', title='Home')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 def login():
     """ method to handle requests made to /login route """
     if current_user.is_authenticated:
@@ -116,13 +117,13 @@ def profile():
                            form=form, user=s)
 
 
-@app.route('/resources')
+@app.route('/resources', strict_slashes=False)
 @login_required
 def resources():
     return render_template('resources.html', title='Resources')
 
 
-@app.route('/projects')
+@app.route('/projects', strict_slashes=False)
 @login_required
 def projects():
     projects = Project.all()
@@ -131,25 +132,23 @@ def projects():
 
 
 @app.route('/projects/<id>', methods=['GET', 'POST'], strict_slashes=False)
-@login_required
 def project(id):
     s = Student.get_by_email(current_user.email)
     project = Project.get(id)
     tasks = []
-    score = {}
+    score = Score.all()
     if project == []:
         abort(404)
     if project is not None:
-        project = project[0]
         tasks = Task.get_all_tasks(project.id)
     if request.method == 'POST':
-        tid = request.form['id']
+        tid = request.form['task']
         score[tid] = checker.check_task(tid, s.id)
     return render_template('tasks.html', title='Project - {}'.format(id),
                            project=project, tasks=tasks, score=score)
 
 
-@app.route('/logout')
+@app.route('/logout', strict_slashes=False)
 @login_required
 def logout():
     """ method to handle requests made to /logout route """

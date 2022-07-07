@@ -73,9 +73,9 @@ def check_task(tid: str, sid: str):
             score += 20
     s = Score.task_by_sid(sid, tid)
     if s == []:
-        s = Score({'sid': sid})
+        s = Score(**{'sid': sid, 'tscore': score})
     else:
         s = s[0]
-    s.tscore = score
+        s.tscore = score
     s.save()
     return score
