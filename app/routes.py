@@ -33,7 +33,7 @@ def register():
         try:
             s = Student.query.filter_by(github=form.github.data).first()
             if s:
-                flash('Account already in use')
+                flash('GitHub is already registered')
                 return redirect(url_for('register'))
             email = Student.query.filter_by(email=form.email.data).first()
             if email:
@@ -132,18 +132,19 @@ def projects():
 
 
 @app.route('/projects/<id>', methods=['GET', 'POST'], strict_slashes=False)
+@login_required
 def project(id):
-    s = Student.get_by_email(current_user.email)
     project = Project.get(id)
-    tasks = []
-    score = Score.all()
     if project == []:
         abort(404)
+    s = Student.get_by_email(current_user.email)
+    if request.method == 'POST':
+        tid = str(request.form['task'])
+        checker.check_task(tid, s.id)
+    tasks = []
+    score = Score.all_tasks(s.id)
     if project is not None:
         tasks = Task.get_all_tasks(project.id)
-    if request.method == 'POST':
-        tid = request.form['task']
-        score[tid] = checker.check_task(tid, s.id)
     return render_template('tasks.html', title='Project - {}'.format(id),
                            project=project, tasks=tasks, score=score)
 
