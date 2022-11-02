@@ -1,2 +1,3 @@
 DROP DATABASE IF EXISTS mentor;
+
 CREATE DATABASE mentor;
