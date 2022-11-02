@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" database class """
+
 import os
 from sqlalchemy import engine
 from sqlalchemy.orm import scoped_session, sessionmaker

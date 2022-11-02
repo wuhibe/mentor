@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" check class """
+
 from models import Base
 from models.core import Core
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String

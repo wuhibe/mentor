@@ -1,3 +1,9 @@
+#!/usr/bin/python3
+"""
+    routes class
+    program control starts here
+"""
+
 import random
 from flask import abort, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user

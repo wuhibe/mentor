@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" project class """
+
 from models import Base
 from models.core import Core
 from sqlalchemy import Column, Integer, String, DateTime, Text

@@ -39,6 +39,7 @@ class Student(Core, Base, UserMixin, db.Model):
         models.db.add(self)
         models.db.commit()
 
+
 @login.user_loader
 def load_user(id):
     """ method to load student id """
