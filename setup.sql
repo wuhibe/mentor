@@ -1,47 +1,4 @@
---insert sample tasks
-insert into
-    `task` (
-        `avg_denom`,
-        `description`,
-        `id`,
-        `name`,
-        `output`,
-        `pid`,
-        `weight`
-    )
-values
-    (
-        5,
-        'Write a Python script that prints exactly \"Programming is like building a multilingual puzzle, followed by a new line.',
-        '101',
-        '2-print',
-        '\"Programming is like building a multilingual puzzle\n',
-        '101',
-        1
-    );
-
-insert into
-    `task` (
-        `avg_denom`,
-        `description`,
-        `id`,
-        `name`,
-        `output`,
-        `pid`,
-        `weight`
-    )
-values
-    (
-        5,
-        'Write a Python script in which the output should be: the number, followed by Battery street, followed by a new line',
-        '102',
-        '3-print_number',
-        '98 Battery street\n',
-        '101',
-        1
-    );
-
---insert sample projects
+-- insert sample projects
 insert into
     `project` (
         `description`,
@@ -102,5 +59,48 @@ values
         '0x03-python-data_structures',
         'alx-higher_level_programming',
         NULL,
+        1
+    );
+
+-- insert sample tasks
+insert into
+    `task` (
+        `avg_denom`,
+        `description`,
+        `id`,
+        `name`,
+        `output`,
+        `pid`,
+        `weight`
+    )
+values
+    (
+        5,
+        'Write a Python script that prints exactly \"Programming is like building a multilingual puzzle, followed by a new line.',
+        '101',
+        '2-print',
+        '\"Programming is like building a multilingual puzzle\n',
+        '101',
+        1
+    );
+
+insert into
+    `task` (
+        `avg_denom`,
+        `description`,
+        `id`,
+        `name`,
+        `output`,
+        `pid`,
+        `weight`
+    )
+values
+    (
+        5,
+        'Write a Python script in which the output should be: the number, followed by Battery street, followed by a new line',
+        '102',
+        '3-print_number',
+        '98 Battery street\n',
+        '101',
         1
     );

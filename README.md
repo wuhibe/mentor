@@ -30,7 +30,7 @@ The SQLAlchemy ORM creates all the neccesary tables during this step.
 - Run the setup query to have sample data in the database
 
 ```
-$ cat setup.sql | mysql -u [USER] -p
+$ cat setup.sql | mysql -u [USER] -p mentor
 Enter password: [PASSWORD]
 ```
 

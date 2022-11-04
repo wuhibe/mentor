@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" student class """
+
 from models import Base
 import models
 from models.core import Core
