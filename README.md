@@ -1,8 +1,10 @@
 # Mentor - WebStack Portfolio Project
 
-# Overview
+## Overview
 
-Mentor is developed as an online platform inspired by online learning platforms such as HackerRank and ALX's very own intranet.
+Mentor is a platform inspired by online learning platforms such as HackerRank and ALX's very own intranet.
+
+A student can register and add his email and password for registration, as well as his github link on which he will be completing his projects. Upon requesting a check for his code on Mentor, the content and output of his code will be checked against a set of criteria and be graded accordingly.
 
 ## Setting up the Project
 
@@ -34,7 +36,33 @@ $ cat setup.sql | mysql -u [USER] -p mentor
 Enter password: [PASSWORD]
 ```
 
+## Usage
+
+- After setting up the project, register yourself as a new user and add a github link
+
+- Browse to Projects tab and view the projects
+
+- If tasks exist, press `Check` to start the checker
+
+- View your grades for the given task.
+
+| Your Grades will be calculated based on: |
+|---|
+| 0 - File Exists|
+| 1 - Pycodestyle|
+| 2 - File permissions|
+| 3 - Shebang and final empty line|
+| 4 - Correct output|
+
+> **Warning**
+> The project is created as a demonstration and will clone and run code on your local machine if the filenames match. Use with caution.
+
+## Author
+
+- Wuhibeselassie Tamire - [Github](https://github.com/wuhibe) / [LinkedIn](https://linkedin.com/in/wuhibeselassie-nigatu)
+
 ## Screenshots
+
 <div>
     <img src="screenshots/register.png" alt="register">
     <img src="screenshots/login.png" alt="login">
